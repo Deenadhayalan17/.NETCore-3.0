@@ -1,1 +1,1 @@
-# NET COre 3.0 Project
+# NET Core 3.0 Project
