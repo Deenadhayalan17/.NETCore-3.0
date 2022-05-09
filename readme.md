@@ -1,0 +1,1 @@
+# NET COre 3.0 Project
