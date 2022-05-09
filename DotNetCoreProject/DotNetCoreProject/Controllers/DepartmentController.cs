@@ -13,7 +13,7 @@ namespace DotNetCoreProject.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok("get all the stident");
+            return Ok("get all the stident test");
         }
         
         [HttpGet(template:"{code}")]
