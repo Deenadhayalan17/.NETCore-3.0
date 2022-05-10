@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreProject.Controllers
 {
+    [ApiVersion("1.0")]// versioning 
     [ApiController]
-    [Route(template: "[controller]")]
+    [Route("api/{v:apiVersion}/[controller]")]
+    //[Route(template: "[controller]")]
     public class DepartmentController : Controller
     {
         [HttpGet]
@@ -76,8 +78,6 @@ namespace DotNetCoreProject.Controllers
             //AllDepartment = AllDepartment.Where(x: department => x.Code != department.code).ToList();
             //return department;
             return AllDepartment.First();
-
-
         }
 
 

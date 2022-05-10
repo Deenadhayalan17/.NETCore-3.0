@@ -27,11 +27,19 @@ namespace DotNetCoreProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            setupSwagger(services);
+            //services.AddApiVersioning();// added for versioning
+            services.AddApiVersioning(x =>
+            {
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+                x.ReportApiVersions = true;
+            });
+            setupSwagger(services); // swagger implementation
         }
 
         private void setupSwagger(IServiceCollection services)
         {
+            //added for swagger 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -67,7 +75,7 @@ namespace DotNetCoreProject
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
-            app.UseSwaggerUI();
+            app.UseSwaggerUI();//added for swagger
             app.UseHttpsRedirection();
 
             app.UseRouting();
