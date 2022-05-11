@@ -1,3 +1,4 @@
+using DLL.DBContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using DLL;
 
 namespace DotNetCoreProject
 {
@@ -34,7 +38,10 @@ namespace DotNetCoreProject
                 x.AssumeDefaultVersionWhenUnspecified = true;
                 x.ReportApiVersions = true;
             });
+            DLLDependancy.AllDependancy(services, Configuration);// entity framework core
             setupSwagger(services); // swagger implementation
+    //        services.AddDbContext<ApplicationDBCOntext>(options =>
+    //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));//DbCOntext
         }
 
         private void setupSwagger(IServiceCollection services)

@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreProject.Controllers
 {
-    [ApiVersion("1.0")]// versioning 
-    [ApiController]
-    [Route("api/{v:apiVersion}/[controller]")]
     //[Route(template: "[controller]")]
-    public class DepartmentController : Controller
+    public class DepartmentController : MainApiController
     {
         [HttpGet]
         public IActionResult GetAll()
@@ -23,7 +20,7 @@ namespace DotNetCoreProject.Controllers
         [HttpGet(template: "{code}")]
         public IActionResult GetA(string code)
         {
-            return Ok(DepartmentStatic.GetADepartment(code));
+            return Ok(DepartmentStatic.GetADepartment());//string code
         }
         [HttpPost]
         public IActionResult Insert( Department department)
@@ -35,8 +32,8 @@ namespace DotNetCoreProject.Controllers
         {
             return Ok(DepartmentStatic.UpdateDepartment(code,department));
         }
-        [HttpDelete(template: "{code}")]
-        public IActionResult delete(string code)
+        [HttpDelete(template: "{code}")] 
+        public IActionResult Delete(string code)
         {
             return Ok(DepartmentStatic.DeleteDepartment(code) );
         }
@@ -54,7 +51,7 @@ namespace DotNetCoreProject.Controllers
         {
             return AllDepartment;
         }
-        public static Department GetADepartment(string code)
+        public static Department GetADepartment()//string code
         {
             return AllDepartment.First();
            // return AllDepartment.FirstOrDefault(x: Department => x.code == code);
